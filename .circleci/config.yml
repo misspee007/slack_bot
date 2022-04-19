@@ -19,7 +19,7 @@ jobs:
           command: npm install --save
       - run:
           name: Run unit tests
-          command: jest --collectCoverage=true
+          command: npm run test --collectCoverage=true
       - store_artifacts:
           path: coverage
       - run:
