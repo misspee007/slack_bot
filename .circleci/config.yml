@@ -5,25 +5,27 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  run_tests:
+  build_and_run_tests:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: circleci/node:10
+      - image: cimg/node:17.2.0
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      - node/install-packages:
+          pkg-manager: npm
       - run:
-          name: "Install dependencies"
-          command: "npm install --save"
+          name: Run unit tests
+          command: npm run test
       - run:
-          name: "Install dependencies"
-          command: "npm install --save"
+          command: npm run build
+          name: Build app
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  build_test_workflow:
     jobs:
-      - say-hello
+      - build_and_run_tests
