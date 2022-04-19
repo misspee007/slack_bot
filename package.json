@@ -4,12 +4,15 @@
   "description": "a slack bot to welcome newcomers and guide them towards the necessary channels and resources",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Precious Abubakar",
   "license": "ISC",
   "dependencies": {
     "@slack/bolt": "^3.11.0",
     "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
   }
 }
